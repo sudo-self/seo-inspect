@@ -1,0 +1,22 @@
+{
+  "short_name": "seo inspect",
+  "name": "seo inspect",
+  "start_url": "https://seo-inspect.vercel.app",
+  "icons": [
+    {
+      "src": "https://seo-inspect.vercel.app/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://seo-inspect.vercel.app/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#000",
+  "background_color": "#f0f0f0"
+}
+
