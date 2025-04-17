@@ -31,15 +31,6 @@ const About = () => {
   return (
     <div className="bg-gray-100 dark:bg-gray-900 container mx-auto p-6 sm:p-8 max-w-4xl min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-6">
-          SEO Inspector API
-        </h1>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-          The seo-inspect API allows you to analyze the SEO elements of a given website.
-          It checks essential elements such as the favicon, meta tags, author, manifest,
-          and the file structure of the website to ensure it is optimized for search engines.
-        </p>
-
         <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mt-8 mb-4">
           API Syntax
         </h2>
@@ -57,7 +48,7 @@ const About = () => {
   const res = await fetch("/api/seo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: targetUrl }),
+        body: JSON.stringify({ url: https://example.com }),
       });
         </pre>
 
@@ -67,7 +58,7 @@ const About = () => {
         <pre className="bg-gray-800 text-white p-4 rounded mb-6">
           {`Response:
 {
-  "favicon": "https://seo-inspect.vercel.app/favicon.ico",
+  "favicon": "https://example.com/favicon.ico",
   "metaTags": [
     { "name": "description", "content": "SEO Inspector Tool" },
     { "property": "og:title", "content": "SEO Inspector" }
