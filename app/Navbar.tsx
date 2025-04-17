@@ -35,19 +35,11 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center gap-6">
-          <Link
-            href="/"
-            className={`text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${isActive("/")}`}
-          >
-            Home
-          </Link>
-
           <Link
             href="/about"
             className={`text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${isActive("/about")}`}
           >
-            About
+            API
           </Link>
 
           <Link
