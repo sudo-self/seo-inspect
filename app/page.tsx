@@ -50,7 +50,7 @@ const SEOChecker = () => {
   const [folderTree, setFolderTree] = useState<Folder[]>([]);
   const [showHtmlManifest, setShowHtmlManifest] = useState(false);
 
-  // Fetch SEO data from the API
+
   const fetchData = async (targetUrl: string) => {
     try {
       setSeoData((prev) => ({ ...prev, loading: true, error: null }));
@@ -86,13 +86,13 @@ const SEOChecker = () => {
     }
   };
 
-  // Handle form submission
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (url) fetchData(normalizeUrl(url));
   };
 
-  // Recursive function to render folder tree structure
+
   const renderFolderTree = (folders: Folder[], depth = 0): JSX.Element[] =>
     folders.map((folder, index) => (
       <div key={`${depth}-${index}`} className={`pl-${depth * 4}`}>
@@ -105,7 +105,7 @@ const SEOChecker = () => {
       </div>
     ));
 
-  // Handle URL paste from clipboard
+
   const handlePaste = () => {
     navigator.clipboard.readText().then((text) => {
       setUrl(text);
