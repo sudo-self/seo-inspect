@@ -24,11 +24,11 @@ interface Folder {
   children?: Folder[];
 }
 
-// Function to handle HTML entities
+
 const htmlEntities = (str: string) =>
   str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-// Function to normalize URLs (if not http/https, add https://)
+//  (if not http/https, add https://)
 const normalizeUrl = (url: string) => {
   if (!/^https?:\/\//i.test(url)) {
     return `https://${url}`;
@@ -37,7 +37,7 @@ const normalizeUrl = (url: string) => {
 };
 
 const SEOChecker = () => {
-  // State hooks for URL, SEO data, folder tree, and HTML manifest visibility
+
   const [url, setUrl] = useState("");
   const [seoData, setSeoData] = useState<SEOData>({
     favicon: null,
