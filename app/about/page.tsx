@@ -52,12 +52,13 @@ const About = () => {
           Request Format
         </h3>
         <pre className="bg-gray-800 text-white p-4 rounded mb-6">
-          {`POST /api/seo-check
+          {`POST /api/seo/
 
-Request body:
-{
-  "url": "https://seo-inspect.vercel.app"
-}`}
+  const res = await fetch("/api/seo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: targetUrl }),
+      });
         </pre>
 
         <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mt-6 mb-4">
