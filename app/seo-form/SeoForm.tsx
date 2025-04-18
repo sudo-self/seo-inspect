@@ -78,24 +78,30 @@ export default function SeoForm() {
           </div>
 
 
-      {/* Google Search Result Preview */}
-      <div className="max-w-xl mx-auto mt-8 p-4 bg-gray-100 dark:bg-gray-900 shadow-md rounded-md">
-        <div className="flex flex-col space-y-2">
-          <a
-            href={meta.url || defaultPlaceholders.url}
-            target="_blank"
-            className="text-blue-600 dark:text-blue-400 font-semibold text-lg"
-          >
-            {meta.title || defaultPlaceholders.title}
-          </a>
-          <p className="text-gray-700 dark:text-gray-300 text-sm">
-            {meta.description || defaultPlaceholders.description}
-          </p>
-          <div className="text-sm text-gray-500 dark:text-gray-400">
-            {meta.url || defaultPlaceholders.url}
+          {/* Google Search Result Preview */}
+          <div className="max-w-xl mx-auto mt-8 p-4 bg-gray-100 dark:bg-gray-900 shadow-md rounded-md">
+            <div className="flex flex-col space-y-2">
+              <a
+                href={meta.url || defaultPlaceholders.url}
+                target="_blank"
+                className="text-blue-600 dark:text-blue-400 font-semibold text-lg"
+              >
+                {meta.title || defaultPlaceholders.title}
+              </a>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                {meta.description || defaultPlaceholders.description}
+              </p>
+              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 gap-2">
+                <img
+                  src={meta.favicon || defaultPlaceholders.favicon}
+                  alt="favicon"
+                  className="w-4 h-4"
+                />
+                <span>{meta.url || defaultPlaceholders.url}</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+
          
 
       {/* Output JSX for copying */}
