@@ -100,6 +100,12 @@ const PwaPage = () => {
           </pre>
         </div>
       </div>
+     <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mt-8 mb-4">
+      <a href="https://seo-inspect.vercel.app/seo-inspect.apk" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/ANDROID-APK-green" alt="Badge Preview">
+  </a>
+</h2>
+
     </div>
   );
 };
