@@ -125,18 +125,18 @@ const SEOChecker = () => {
   return (
     <div className="bg-gray-100 dark:bg-gray-900 container mx-auto p-8 max-w-4xl min-h-screen pb-20 pt-24">
       {/* Header */}
-      <div className="mb-6 text-center">
-        <h1 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-          seo-inspect.vercel.app
-        </h1>
-        <p className="text-lg text-indigo-600 dark:text-gray-300 mb-4">
-          View SEO components including seoData, metaTags, and static assets.
-          <span className="block text-sm text-gray-500 dark:text-gray-400 mt-2">
-            **Note: This site does not collect or store any data from the URLs
-            you enter.
-          </span>
-        </p>
-      </div>
+          <div className="text-center max-w-2xl mx-auto mt-12 px-4">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 dark:text-white mb-4">
+              seo-inspect.vercel.app
+            </h1>
+            <p className="text-lg sm:text-xl text-indigo-600 dark:text-indigo-400 mb-4">
+              Generate SEO components and inspect websites by URL — including meta tags, Open Graph data, and static assets.
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              <strong>Note:</strong> This site does not collect or store any data from the URLs you enter.
+            </p>
+          </div>
+
 
       {/* URL Input */}
       <form onSubmit={handleSubmit} className="mb-6">
