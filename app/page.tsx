@@ -127,7 +127,7 @@ const SEOChecker = () => {
       {/* Header */}
           <div className="text-center max-w-2xl mx-auto mt-12 px-4">
             <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 dark:text-white mb-4">
-              seo-inspect.vercel.app
+              SEO inspect
             </h1>
             <p className="text-lg sm:text-xl text-indigo-600 dark:text-indigo-400 mb-4">
               Generate SEO components and inspect websites by URL — including meta tags, Open Graph data, and static assets.
