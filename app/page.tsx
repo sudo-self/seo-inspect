@@ -230,7 +230,7 @@ const SEOChecker = () => {
         <div className="mb-4">
           <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center">
             <img
-              src="https://img.shields.io/badge/open-graph-blue"
+              src="https://img.shields.io/badge/OG-metatags-blue"
               alt="Status Badge"
               className="ml-2"
             />
@@ -293,7 +293,7 @@ const SEOChecker = () => {
       {/* Full SEO JSON Output */}
       <div className="mt-6">
         <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2">
-          <img src="https://img.shields.io/badge/SEO-inspect-pink" alt="Badge Preview" />
+          <img src="https://img.shields.io/badge/SEO-JSON-dakgreen" alt="Badge Preview" />
         </h2>
         <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded overflow-auto text-sm text-gray-700 dark:text-gray-200 max-h-[500px]">
           {JSON.stringify(seoData, null, 2)}
