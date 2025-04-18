@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -15,7 +15,7 @@ const Navbar = () => {
   }, []);
 
   const isActive = (path: string) =>
-    pathname === path ? "text-indigo-700 underline" : "";
+    pathname === path ? 'text-indigo-700 underline' : '';
 
   if (!mounted) return null;
 
@@ -39,18 +39,25 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <Link
             href="/about"
-            className={`text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${isActive(
-              "/about"
-            )}`}
+            className={`text-sm font-semibold hover:text-indigo-600 dark:hover:text-indigo-400 ${
+              isActive('/about') || 'text-gray-700 dark:text-gray-300'
+            }`}
           >
             API
           </Link>
-
+          <Link
+            href="/seo-form"
+            className={`text-sm font-semibold hover:text-indigo-600 dark:hover:text-indigo-400 ${
+              isActive('/seo-form') || 'text-gray-700 dark:text-gray-300'
+            }`}
+          >
+            SEO
+          </Link>
           <Link
             href="/pwa"
-            className={`text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${isActive(
-              "/json"
-            )}`}
+            className={`text-sm font-semibold hover:text-indigo-600 dark:hover:text-indigo-400 ${
+              isActive('/pwa') || 'text-gray-700 dark:text-gray-300'
+            }`}
           >
             APK
           </Link>
@@ -61,3 +68,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

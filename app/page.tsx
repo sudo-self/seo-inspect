@@ -4,6 +4,9 @@
 
 import React, { useState, useEffect } from "react";
 
+
+
+
 // SEO data interfaces
 interface MetaTag {
   name?: string;
@@ -306,11 +309,14 @@ const SEOChecker = () => {
           </div>
         </div>
       )}
+          
+       
     </div>
   );
 };
 
 export default SEOChecker;
+
 
 
 
