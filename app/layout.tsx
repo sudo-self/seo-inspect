@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "./Navbar";
@@ -11,14 +13,35 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono", 
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
-
 export const metadata: Metadata = {
-  title: "SEO Inspector",
-  description: "Inspect a website's metadata",
+  title: "seo inspector",
+  description: "View SEO components including seoData, metaTags, and static assets.",
+  authors: [{ name: "Jesse Roper" }],
+  openGraph: {
+    type: "website",
+    url: "https://seo-inspect.vercel.app",
+    title: "seo inspector",
+    description: "View SEO components including seoData, metaTags, and static assets.",
+    images: [
+      {
+        url: "https://seo-inspect.vercel.app/og.png",
+        width: 1200,
+        height: 630,
+        alt: "seo inspector preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "seo inspector",
+    description: "View SEO components including seoData, metaTags, and static assets.",
+    images: ["https://seo-inspect.vercel.app/og.png"],
+  },
+  metadataBase: new URL("https://seo-inspect.vercel.app"),
 };
 
 export default function RootLayout({
@@ -28,9 +51,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <Navbar />
           <main>{children}</main>
