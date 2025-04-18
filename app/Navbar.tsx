@@ -1,3 +1,4 @@
+// app/Navbar.tsx
 "use client";
 
 import Link from "next/link";
@@ -15,9 +16,7 @@ const Navbar = () => {
   }, []);
 
   const isActive = (path: string) =>
-    pathname === path
-      ? "text-indigo-700 underline"
-      : "";
+    pathname === path ? "text-indigo-700 underline" : "";
 
   if (!mounted) return null;
 
@@ -30,21 +29,30 @@ const Navbar = () => {
             alt="Search Icon"
             className="h-8 w-auto mr-4"
           />
-          <Link href="/" className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
+          <Link
+            href="/"
+            className="text-xl font-bold text-indigo-600 dark:text-indigo-400"
+          >
             SEO Inspect
           </Link>
         </div>
 
+        {/* Moved these links and button into a new div */}
+        <div className="flex items-center gap-4">
           <Link
             href="/about"
-            className={`text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${isActive("/about")}`}
+            className={`text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${isActive(
+              "/about"
+            )}`}
           >
-            API
+            About
           </Link>
 
           <Link
-            href="/json"
-            className={`text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${isActive("/json")}`}
+            href="/pwa"
+            className={`text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${isActive(
+              "/json"
+            )}`}
           >
             PWAs
           </Link>
@@ -63,3 +71,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

@@ -11,12 +11,13 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-geist-mono", 
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
-  title: "Seo Inspector",
+  title: "SEO Inspector",
   description: "Inspect a website's metadata",
 };
 
@@ -26,17 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-          <html lang="en" suppressHydrationWarning>
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-              <Providers>
-                <Navbar />
-                <main>{children}</main>
-                <Footer />
-              </Providers>
-            </body>
-          </html>
-
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </Providers>
+      </body>
+    </html>
   );
 }
-
-

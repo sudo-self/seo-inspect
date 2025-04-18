@@ -24,11 +24,9 @@ interface Folder {
   children?: Folder[];
 }
 
-
 const htmlEntities = (str: string) =>
   str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-//  (if not http/https, add https://)
 const normalizeUrl = (url: string) => {
   if (!/^https?:\/\//i.test(url)) {
     return `https://${url}`;
@@ -37,7 +35,6 @@ const normalizeUrl = (url: string) => {
 };
 
 const SEOChecker = () => {
-
   const [url, setUrl] = useState("");
   const [seoData, setSeoData] = useState<SEOData>({
     favicon: null,
@@ -49,7 +46,6 @@ const SEOChecker = () => {
   });
   const [folderTree, setFolderTree] = useState<Folder[]>([]);
   const [showHtmlManifest, setShowHtmlManifest] = useState(false);
-
 
   const fetchData = async (targetUrl: string) => {
     try {
@@ -86,12 +82,10 @@ const SEOChecker = () => {
     }
   };
 
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (url) fetchData(normalizeUrl(url));
   };
-
 
   const renderFolderTree = (folders: Folder[], depth = 0): JSX.Element[] =>
     folders.map((folder, index) => (
@@ -104,7 +98,6 @@ const SEOChecker = () => {
           renderFolderTree(folder.children, depth + 1)}
       </div>
     ));
-
 
   const handlePaste = () => {
     navigator.clipboard.readText().then((text) => {
@@ -128,52 +121,48 @@ const SEOChecker = () => {
       </div>
 
       {/* URL Input Form */}
-      <div className="mb-6">
-        <form onSubmit={handleSubmit} className="mb-6">
-          <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-            <input
-              type="url"
-              placeholder="Enter the website URL"
-              className="flex-grow border rounded px-4 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              required
-            />
-            
-            {/* Paste Button */}
-            <button
-              type="button"
-              onClick={handlePaste}
-              className="bg-blue-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded"
-            >
-              Paste
-            </button>
+      <form onSubmit={handleSubmit} className="mb-6">
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
+          <input
+            type="url"
+            placeholder="Enter the website URL"
+            className="flex-grow border rounded px-4 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+          />
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="bg-indigo-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded"
-              disabled={seoData.loading}
-            >
-              {seoData.loading ? "Checking..." : "Check"}
-            </button>
-          </div>
-        </form>
+          <button
+            type="button"
+            onClick={handlePaste}
+            className="bg-blue-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded"
+          >
+            Paste
+          </button>
 
-        {/* URL Iframe Display */}
-        {url && (
-          <div className="mb-6">
-            <iframe
-              src={normalizeUrl(url)}
-              title="Website Preview"
-              width="100%"
-              height="400px"
-              className="border border-gray-300 dark:border-gray-600 rounded"
-              loading="lazy"
-            ></iframe>
-          </div>
-        )}
-      </div>
+          <button
+            type="submit"
+            className="bg-indigo-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded"
+            disabled={seoData.loading}
+          >
+            {seoData.loading ? "Checking..." : "Check"}
+          </button>
+        </div>
+      </form>
+
+      {/* URL Iframe Display */}
+      {url && (
+        <div className="mb-6">
+          <iframe
+            src={normalizeUrl(url)}
+            title="Website Preview"
+            width="100%"
+            height="400px"
+            className="border border-gray-300 dark:border-gray-600 rounded"
+            loading="lazy"
+          ></iframe>
+        </div>
+      )}
 
       {/* Favicon Display */}
       {seoData.favicon && (
@@ -284,12 +273,18 @@ const SEOChecker = () => {
           {renderFolderTree(folderTree)}
         </div>
       )}
+
+      {/* Full SEO JSON Output */}
+      <div className="mt-6">
+        <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2">
+          <img src="https://img.shields.io/badge/SEO-inspect-pink" alt="Badge Preview" />
+        </h2>
+        <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded overflow-auto text-sm text-gray-700 dark:text-gray-200 max-h-[500px]">
+          {JSON.stringify(seoData, null, 2)}
+        </pre>
+      </div>
     </div>
   );
 };
 
 export default SEOChecker;
-
-
-
-
