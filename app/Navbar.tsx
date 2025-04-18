@@ -1,4 +1,3 @@
-// app/Navbar.tsx
 "use client";
 
 import Link from "next/link";
@@ -37,7 +36,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Moved these links and button into a new div */}
         <div className="flex items-center gap-4">
           <Link
             href="/about"
@@ -71,4 +69,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
