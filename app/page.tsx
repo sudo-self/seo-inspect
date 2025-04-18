@@ -175,35 +175,47 @@ const SEOChecker = () => {
         </div>
       )}
 
-      {/* Favicon */}
-      {seoData.favicon && (
-        <div className="mt-4 flex items-center gap-2">
-          <img
-            src="https://img.shields.io/badge/favicon-gray"
-            alt="Status Badge"
-            className="ml-2"
-          />
-          <img
-            src={seoData.favicon}
-            alt="Site Favicon"
-            className="w-10 h-10 rounded"
-            onError={(e) =>
-              ((e.target as HTMLImageElement).style.display = "none")
-            }
-            title="Site Favicon"
-          />
-          <span className="text-sm text-gray-700 dark:text-gray-300">
-            {seoData.favicon}
-          </span>
-        </div>
-      )}
+{/* Favicon */}
+{seoData.favicon && (
+  <div className="mt-6">
+    <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+      <img
+        src="https://img.shields.io/badge/favicon-gray"
+        alt="Favicon Badge"
+        className="w-auto h-5"
+      />
+      <span>Favicon</span>
+    </h2>
 
-      {/* Author */}
-      {seoData.author && (
-        <div className="mt-2 text-sm text-blue-700 dark:text-gray-400">
-          <strong>Author:</strong> {seoData.author}
-        </div>
-      )}
+    <div className="flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded shadow-sm border dark:border-gray-700">
+      <img
+        src={seoData.favicon}
+        alt="Site Favicon"
+        className="w-10 h-10 rounded"
+        onError={(e) =>
+          ((e.target as HTMLImageElement).style.display = "none")
+        }
+        title="Site Favicon"
+      />
+      <span className="text-sm text-gray-700 dark:text-gray-300 break-all">
+        {seoData.favicon}
+      </span>
+    </div>
+  </div>
+)}
+
+{/* Author */}
+{seoData.author && (
+  <div className="mt-4">
+    <h2 className="text-md font-medium text-indigo-700 dark:text-gray-300 mb-1">
+      Author
+    </h2>
+    <div className="text-sm text-blue-700 dark:text-gray-400 bg-white dark:bg-gray-800 p-3 rounded border dark:border-gray-700">
+      {seoData.author}
+    </div>
+  </div>
+)}
+
 
       {/* Error Message */}
       {seoData.error && (
