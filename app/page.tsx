@@ -279,29 +279,30 @@ const SEOChecker = () => {
           )}
         </div>
       )}
+   {folderTree.length > 0 && (
+  <div className="mt-6 flex flex-col lg:flex-row gap-6">
+    {/* Folder Tree */}
+    <div className="flex-1">
+      <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2">
+        <strong>/PUBLIC</strong>
+      </h2>
+      {renderFolderTree(folderTree)}
+    </div>
 
-      {/* Folder Tree */}
-      {folderTree.length > 0 && (
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2">
-            <strong>/PUBLIC</strong>
-          </h2>
-          {renderFolderTree(folderTree)}
-        </div>
-      )}
-
-      {/* Full SEO JSON Output */}
-      <div className="mt-6">
-        <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2">
-          <img src="https://img.shields.io/badge/SEO-JSON-dakgreen" alt="Badge Preview" />
-        </h2>
-        <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded overflow-auto text-sm text-gray-700 dark:text-gray-200 max-h-[500px]">
+    {/* Full SEO JSON Output*/}
+    <div className="flex-1">
+      <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+        <img
+          src="https://img.shields.io/badge/SEO-JSON-darkgreen"
+          alt="Badge Preview"
+        />
+        <span>Terminal View</span>
+      </h2>
+      <div className="bg-black text-green-400 font-mono p-4 rounded-lg overflow-auto text-sm max-h-[500px] shadow-inner shadow-black border border-gray-700">
+        <pre className="whitespace-pre-wrap break-words">
           {JSON.stringify(seoData, null, 2)}
         </pre>
       </div>
     </div>
-  );
-};
-
-export default SEOChecker;
-
+  </div>
+)}
