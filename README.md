@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 **Live Demo**: [seo-inspect.vercel.app](https://seo-inspect.vercel.app)
 
+**Android App**: [android-app](https://seo-inspect.vercel.app/seo-inspect.apk)
+
 The `/api/seo` endpoint allows you to inspect SEO metadata, favicons, manifest, author tags, and folder structure of any publicly accessible website.
 
 ---
