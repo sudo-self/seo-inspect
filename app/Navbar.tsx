@@ -54,7 +54,7 @@ const Navbar = () => {
               "/json"
             )}`}
           >
-            PWAs
+            Android
           </Link>
 
           <button
