@@ -16,7 +16,7 @@ const PwaPage = () => {
   }, []);
 
   useEffect(() => {
-
+    // Save the theme to localStorage and apply it to the body
     localStorage.setItem("theme", darkMode ? "dark" : "light");
 
     if (darkMode) {
@@ -34,18 +34,19 @@ const PwaPage = () => {
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
           A Progressive Web App (PWA) is delivered through the web. It is built using standard web technologies such as HTML, CSS, and JavaScript, but with the ability to deliver native-like experiences on the web.
-        </p><p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-        seo-inspect.vercel.app/&nbsp;<code className="text-green-800">manifest.json</code>
         </p>
-          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mt-8 mb-4">
-            <img
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
+          seo-inspect.vercel.app/&nbsp;<code className="text-green-800">manifest.json</code>
+        </p>
+
+        <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mt-8 mb-4">
+          <img
             src="https://img.shields.io/badge/https://seo--inspect.vercel.app/-manifest.json-darkgreen"
             alt="PWA Manifest Badge"
             className="my-4"
-          /> 
-          </h2>
+          />
+        </h2>
 
- 
         <div className="relative mb-4">
           <pre className="bg-gray-800 text-white p-4 rounded overflow-x-auto">
             {`{
@@ -78,9 +79,9 @@ const PwaPage = () => {
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
           To enable offline capabilities, you need to register a <code className="text-green-800">service-worker.js</code> file in your application.
         </p>
-          <img
+        <img
           src="https://img.shields.io/badge/https://seo--inspect.vercel.app/-service--worker.js-yellow"
-          alt="PWA Manifest Badge"
+          alt="Service Worker Badge"
           className="my-4"
         />
         <div className="relative mb-4">
@@ -100,16 +101,24 @@ const PwaPage = () => {
           </pre>
         </div>
       </div>
-     <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mt-8 mb-4">
-      <a href="https://seo-inspect.vercel.app/seo-inspect.apk" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/ANDROID-APK-green" alt="Badge Preview">
-  </a>
-</h2>
 
+      <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mt-8 mb-4">
+        <a
+          href="https://seo-inspect.vercel.app/seo-inspect.apk"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://img.shields.io/badge/ANDROID-APK-green"
+            alt="Download Android APK"
+          />
+        </a>
+      </h2>
     </div>
   );
 };
 
 export default PwaPage;
+
 
 
