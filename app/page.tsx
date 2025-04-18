@@ -185,7 +185,7 @@ const SEOChecker = () => {
         <div className="mt-4 flex items-center gap-2">
           <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center">
             <img
-              src="https://img.shields.io/badge/favicon.ico-violet"
+              src="https://img.shields.io/badge/favicon-gray"
               alt="Status Badge"
               className="ml-2"
             />
@@ -284,7 +284,7 @@ const SEOChecker = () => {
       {folderTree.length > 0 && (
         <div className="mt-6">
           <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2">
-            Folder Structure
+            <strong>/PUBLIC</strong>
           </h2>
           {renderFolderTree(folderTree)}
         </div>
