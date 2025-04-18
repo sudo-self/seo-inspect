@@ -184,7 +184,6 @@ const SEOChecker = () => {
         alt="Favicon Badge"
         className="w-auto h-5"
       />
-      <span>Favicon</span>
     </h2>
 
     <div className="flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded shadow-sm border dark:border-gray-700">
@@ -207,8 +206,12 @@ const SEOChecker = () => {
 {/* Author */}
 {seoData.author && (
   <div className="mt-4">
-    <h2 className="text-md font-medium text-indigo-700 dark:text-gray-300 mb-1">
-      Author
+  <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+      <img
+        src="https://img.shields.io/badge/Author-gray"
+        alt="Favicon Badge"
+        className="w-auto h-5"
+      />
     </h2>
     <div className="text-sm text-blue-700 dark:text-gray-400 bg-white dark:bg-gray-800 p-3 rounded border dark:border-gray-700">
       {seoData.author}
