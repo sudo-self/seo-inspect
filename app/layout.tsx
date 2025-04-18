@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./globals.css";
 import { Providers } from "./providers";
+import { transform } from 'lightningcss';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
