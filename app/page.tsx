@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 
-//SEO data
+// SEO data interfaces
 interface MetaTag {
   name?: string;
   property?: string;
@@ -12,7 +12,7 @@ interface MetaTag {
 interface SEOData {
   favicon: string | null;
   metaTags: MetaTag[];
-  manifest: any | null;
+  manifest: Record<string, any> | null;
   author: string | null;
   error: string | null;
   loading: boolean;
@@ -24,14 +24,9 @@ interface Folder {
   children?: Folder[];
 }
 
-const htmlEntities = (str: string) =>
-  str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
+// Helpers
 const normalizeUrl = (url: string) => {
-  if (!/^https?:\/\//i.test(url)) {
-    return `https://${url}`;
-  }
-  return url;
+  return /^https?:\/\//i.test(url) ? url : `https://${url}`;
 };
 
 const SEOChecker = () => {
@@ -44,21 +39,22 @@ const SEOChecker = () => {
     error: null,
     loading: false,
   });
+
   const [folderTree, setFolderTree] = useState<Folder[]>([]);
   const [showHtmlManifest, setShowHtmlManifest] = useState(false);
 
-  //service worker
+  // Register service worker
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("/service-worker.js")
-          .then((registration) => {
-            console.log("Service Worker registered:", registration);
-          })
-          .catch((error) => {
-            console.log("Service Worker registration failed:", error);
-          });
+          .then((registration) =>
+            console.log("Service Worker registered:", registration)
+          )
+          .catch((error) =>
+            console.error("Service Worker registration failed:", error)
+          );
       });
     }
   }, []);
@@ -103,27 +99,27 @@ const SEOChecker = () => {
     if (url) fetchData(normalizeUrl(url));
   };
 
-  const renderFolderTree = (folders: Folder[], depth = 0): JSX.Element[] =>
-    folders.map((folder, index) => (
-      <div key={`${depth}-${index}`} className={`pl-${depth * 4}`}>
-        <div className="text-sm font-mono text-gray-800 dark:text-gray-200">
-          {folder.type === "directory" ? "📁" : "📄"} {folder.name}
-        </div>
-        {folder.children &&
-          folder.type === "directory" &&
-          renderFolderTree(folder.children, depth + 1)}
-      </div>
-    ));
-
   const handlePaste = () => {
     navigator.clipboard.readText().then((text) => {
       setUrl(text);
     });
   };
 
+  const renderFolderTree = (folders: Folder[], depth = 0): JSX.Element[] =>
+    folders.map((folder, index) => (
+      <div key={`${depth}-${index}`} className={`pl-${depth * 4}`}>
+        <div className="text-sm font-mono text-gray-800 dark:text-gray-200">
+          {folder.type === "directory" ? "📁" : "📄"} {folder.name}
+        </div>
+        {folder.type === "directory" && folder.children?.length
+          ? renderFolderTree(folder.children, depth + 1)
+          : null}
+      </div>
+    ));
+
   return (
     <div className="bg-gray-100 dark:bg-gray-900 container mx-auto p-8 max-w-4xl min-h-screen pb-20 pt-24">
-      {/* Section Above the Input Area */}
+      {/* Header */}
       <div className="mb-6 text-center">
         <h1 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
           seo-inspect.vercel.app
@@ -131,12 +127,13 @@ const SEOChecker = () => {
         <p className="text-lg text-indigo-600 dark:text-gray-300 mb-4">
           View SEO components including seoData, metaTags, and static assets.
           <span className="block text-sm text-gray-500 dark:text-gray-400 mt-2">
-            **Note: This site does not collect or store any data from the URLs you enter.
+            **Note: This site does not collect or store any data from the URLs
+            you enter.
           </span>
         </p>
       </div>
 
-      {/* URL Input Form */}
+      {/* URL Input */}
       <form onSubmit={handleSubmit} className="mb-6">
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
           <input
@@ -147,7 +144,6 @@ const SEOChecker = () => {
             onChange={(e) => setUrl(e.target.value)}
             required
           />
-
           <button
             type="button"
             onClick={handlePaste}
@@ -155,7 +151,6 @@ const SEOChecker = () => {
           >
             Paste
           </button>
-
           <button
             type="submit"
             className="bg-indigo-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded"
@@ -166,66 +161,62 @@ const SEOChecker = () => {
         </div>
       </form>
 
-      {/* URL Iframe Display */}
+      {/* Website Iframe */}
       {url && (
         <div className="mb-6">
           <iframe
             src={normalizeUrl(url)}
             title="Website Preview"
             width="100%"
-            height="400px"
+            height="400"
             className="border border-gray-300 dark:border-gray-600 rounded"
             loading="lazy"
-          ></iframe>
+          />
         </div>
       )}
 
-      {/* Favicon Display */}
+      {/* Favicon */}
       {seoData.favicon && (
         <div className="mt-4 flex items-center gap-2">
-          <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center">
-            <img
-              src="https://img.shields.io/badge/favicon-gray"
-              alt="Status Badge"
-              className="ml-2"
-            />
-          </h2>
-          <div className="flex items-center gap-2">
-            <img
-              src={seoData.favicon}
-              alt="Site Favicon"
-              className="w-10 h-10 rounded"
-              onError={(e) =>
-                ((e.target as HTMLImageElement).style.display = "none")
-              }
-              title="Site Favicon"
-            />
-            <span className="text-sm text-gray-700 dark:text-gray-300">
-              {seoData.favicon}
-            </span>
-          </div>
+          <img
+            src="https://img.shields.io/badge/favicon-gray"
+            alt="Status Badge"
+            className="ml-2"
+          />
+          <img
+            src={seoData.favicon}
+            alt="Site Favicon"
+            className="w-10 h-10 rounded"
+            onError={(e) =>
+              ((e.target as HTMLImageElement).style.display = "none")
+            }
+            title="Site Favicon"
+          />
+          <span className="text-sm text-gray-700 dark:text-gray-300">
+            {seoData.favicon}
+          </span>
         </div>
       )}
 
-      {/* Author Display */}
+      {/* Author */}
       {seoData.author && (
         <div className="mt-2 text-sm text-blue-700 dark:text-gray-400">
-          <span className="font-medium">Author:</span> {seoData.author}
+          <strong>Author:</strong> {seoData.author}
         </div>
       )}
 
-      {/* Error Display */}
+      {/* Error Message */}
       {seoData.error && (
         <div
           className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"
           role="alert"
         >
-          <strong className="font-bold">Error: </strong>
+          <strong className="font-bold">Error:</strong>{" "}
           <span>{seoData.error}</span>
         </div>
       )}
 
-      {/* Meta Tags Display */}
+      {/* Meta Tags */}
       {seoData.metaTags.length > 0 && (
         <div className="mb-4">
           <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center">
@@ -235,7 +226,6 @@ const SEOChecker = () => {
               className="ml-2"
             />
           </h2>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {seoData.metaTags.map((tag, index) => (
               <div
@@ -244,12 +234,14 @@ const SEOChecker = () => {
               >
                 {tag.name && (
                   <div>
-                    <strong className="text-blue-500">Name:</strong> {tag.name}
+                    <strong className="text-blue-500">Name:</strong>{" "}
+                    {tag.name}
                   </div>
                 )}
                 {tag.property && (
                   <div>
-                    <strong className="text-green-800">Property:</strong> {tag.property}
+                    <strong className="text-green-800">Property:</strong>{" "}
+                    {tag.property}
                   </div>
                 )}
                 {tag.content && (
@@ -263,7 +255,7 @@ const SEOChecker = () => {
         </div>
       )}
 
-      {/* Manifest Display */}
+      {/* Manifest */}
       {seoData.manifest && (
         <div className="mb-4">
           <button
@@ -279,30 +271,37 @@ const SEOChecker = () => {
           )}
         </div>
       )}
-   {folderTree.length > 0 && (
-  <div className="mt-6 flex flex-col lg:flex-row gap-6">
-    {/* Folder Tree */}
-    <div className="flex-1">
-      <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2">
-        <strong>/PUBLIC</strong>
-      </h2>
-      {renderFolderTree(folderTree)}
-    </div>
 
-    {/* Full SEO JSON Output*/}
-    <div className="flex-1">
-      <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center gap-2">
-        <img
-          src="https://img.shields.io/badge/SEO-JSON-darkgreen"
-          alt="Badge Preview"
-        />
-        <span>Terminal View</span>
-      </h2>
-      <div className="bg-black text-green-400 font-mono p-4 rounded-lg overflow-auto text-sm max-h-[500px] shadow-inner shadow-black border border-gray-700">
-        <pre className="whitespace-pre-wrap break-words">
-          {JSON.stringify(seoData, null, 2)}
-        </pre>
-      </div>
+      {/* Folder Tree & Terminal View */}
+      {folderTree.length > 0 && (
+        <div className="mt-6 flex flex-col lg:flex-row gap-6">
+          <div className="flex-1">
+            <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2">
+              <strong>/PUBLIC</strong>
+            </h2>
+            {renderFolderTree(folderTree)}
+          </div>
+
+          <div className="flex-1">
+            <h2 className="text-xl font-semibold text-indigo-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+              <img
+                src="https://img.shields.io/badge/SEO-JSON-darkgreen"
+                alt="Badge Preview"
+              />
+            </h2>
+            <div className="bg-black text-gray-400 font-mono p-4 rounded-lg overflow-auto text-sm max-h-[500px] shadow-inner shadow-black border border-gray-700">
+              <pre className="whitespace-pre-wrap break-words">
+                {JSON.stringify(seoData, null, 2)}
+              </pre>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-)}
+  );
+};
+
+export default SEOChecker;
+
+
+
