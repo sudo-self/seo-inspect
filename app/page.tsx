@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-// Types for meta tags and SEO data
+//SEO data
 interface MetaTag {
   name?: string;
   property?: string;
@@ -46,6 +46,22 @@ const SEOChecker = () => {
   });
   const [folderTree, setFolderTree] = useState<Folder[]>([]);
   const [showHtmlManifest, setShowHtmlManifest] = useState(false);
+
+  //service worker
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then((registration) => {
+            console.log("Service Worker registered:", registration);
+          })
+          .catch((error) => {
+            console.log("Service Worker registration failed:", error);
+          });
+      });
+    }
+  }, []);
 
   const fetchData = async (targetUrl: string) => {
     try {
@@ -109,8 +125,8 @@ const SEOChecker = () => {
     <div className="bg-gray-100 dark:bg-gray-900 container mx-auto p-8 max-w-4xl min-h-screen pb-20 pt-24">
       {/* Section Above the Input Area */}
       <div className="mb-6 text-center">
-        <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-          SEO Inspect
+        <h1 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+          seo-inspect.vercel.app
         </h1>
         <p className="text-lg text-indigo-600 dark:text-gray-300 mb-4">
           View SEO components including seoData, metaTags, and static assets.
@@ -288,3 +304,4 @@ const SEOChecker = () => {
 };
 
 export default SEOChecker;
+
